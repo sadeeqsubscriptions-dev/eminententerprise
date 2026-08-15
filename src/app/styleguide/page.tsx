@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { SurveyLine } from "@/components/brand/survey-line";
 import { formatPKR } from "@/lib/format-pkr";
 import { formatArea } from "@/lib/area";
+import urMessages from "../../../messages/ur.json";
 
 export const metadata: Metadata = { title: "Styleguide", robots: { index: false, follow: false } };
 
@@ -169,6 +170,25 @@ export default function StyleguidePage() {
             <Label htmlFor="sg-consent" className="font-normal">
               I agree to be contacted about this enquiry
             </Label>
+          </div>
+        </div>
+      </Section>
+
+      <Section title="Internationalisation — Urdu RTL preview">
+        <p className="mb-4 max-w-2xl text-body-sm text-ink-secondary">
+          English is the complete, default locale across every route. Urdu ships as a translation scaffold —
+          real message files at <code className="font-tabular-nums text-body-sm">/messages/ur.json</code> plus
+          the RTL layout switch below, wired through <code className="font-tabular-nums text-body-sm">[dir=&quot;rtl&quot;]</code>{" "}
+          rules in globals.css (Noto Nastaliq Urdu, no uppercase/tracking). Routing every page through a{" "}
+          <code className="font-tabular-nums text-body-sm">[locale]</code> segment is the documented next step in
+          the README, not yet wired into the live route tree.
+        </p>
+        <div dir="rtl" lang="ur" className="border border-border-hairline bg-surface-sunken p-6">
+          <h3 className="text-heading-lg text-ink-primary">{urMessages.home.groupHeadline}</h3>
+          <p className="mt-3 text-body-md text-ink-secondary">{urMessages.home.groupBody}</p>
+          <div className="mt-4 flex gap-3">
+            <Button variant="primary">{urMessages.common.sendEnquiry}</Button>
+            <Button variant="whatsapp">{urMessages.common.whatsappNow}</Button>
           </div>
         </div>
       </Section>

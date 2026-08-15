@@ -39,13 +39,13 @@ export default function ConstructionLandingPage() {
             <Badge variant="accent">{BURAQ.badge}</Badge>
             <h1 className="mt-4 text-display-lg sm:text-display-xl">{BURAQ.heroHeadline}</h1>
             <p className="mt-5 max-w-lg text-body-lg text-ink-secondary">{BURAQ.intro}</p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button asChild variant="whatsapp" size="lg">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto">
                 <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
                   Discuss Your Project on WhatsApp
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
                 <Link href="/construction/portfolio">View Portfolio</Link>
               </Button>
             </div>
@@ -232,7 +232,7 @@ export default function ConstructionLandingPage() {
           <p className="mt-4 text-body-md text-ink-inverted-muted">
             Tell us about your plot, your renovation, or your project idea — we&apos;ll respond directly on WhatsApp.
           </p>
-          <Button asChild variant="whatsapp" size="lg" className="mt-7">
+          <Button asChild variant="whatsapp" size="lg" className="mt-7 w-full sm:w-auto">
             <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
               Start a WhatsApp Conversation
             </a>

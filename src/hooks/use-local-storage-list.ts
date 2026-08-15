@@ -22,53 +22,38 @@ export function useLocalStorageList(key: string, max?: number) {
     setHydrated(true);
   }, [key]);
 
-  const persist = useCallback(
-    (next: string[]) => {
-      setIds(next);
-      try {
-        window.localStorage.setItem(key, JSON.stringify(next));
-      } catch {
-        // storage unavailable — state still updates in-memory
-      }
-    },
-    [key],
-  );
+  // Persist whenever `ids` changes, once hydrated — kept as its own effect
+  // (rather than called from inside a setState updater) so the write is a
+  // pure side effect of committed state, not something that can run twice
+  // per update under StrictMode's updater-function double-invocation.
+  useEffect(() => {
+    if (!hydrated) return;
+    try {
+      window.localStorage.setItem(key, JSON.stringify(ids));
+    } catch {
+      // storage unavailable — state still updates in-memory
+    }
+  }, [key, ids, hydrated]);
 
   const add = useCallback(
     (id: string) => {
-      setIds((prev) => {
-        if (prev.includes(id)) return prev;
-        const next = max ? [...prev, id].slice(-max) : [...prev, id];
-        persist(next);
-        return next;
-      });
+      setIds((prev) => (prev.includes(id) ? prev : max ? [...prev, id].slice(-max) : [...prev, id]));
     },
-    [max, persist],
+    [max],
   );
 
-  const remove = useCallback(
-    (id: string) => {
-      setIds((prev) => {
-        const next = prev.filter((x) => x !== id);
-        persist(next);
-        return next;
-      });
-    },
-    [persist],
-  );
+  const remove = useCallback((id: string) => {
+    setIds((prev) => prev.filter((x) => x !== id));
+  }, []);
 
   const toggle = useCallback(
     (id: string) => {
-      setIds((prev) => {
-        const next = prev.includes(id) ? prev.filter((x) => x !== id) : max ? [...prev, id].slice(-max) : [...prev, id];
-        persist(next);
-        return next;
-      });
+      setIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : max ? [...prev, id].slice(-max) : [...prev, id]));
     },
-    [max, persist],
+    [max],
   );
 
-  const clear = useCallback(() => persist([]), [persist]);
+  const clear = useCallback(() => setIds([]), []);
   const has = useCallback((id: string) => ids.includes(id), [ids]);
 
   return { ids, hydrated, add, remove, toggle, clear, has, isFull: max ? ids.length >= max : false };

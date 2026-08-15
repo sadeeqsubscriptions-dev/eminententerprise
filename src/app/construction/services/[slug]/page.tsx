@@ -55,7 +55,7 @@ export default async function ConstructionServicePage({ params }: { params: Prom
         <p className="mt-4 text-body-lg text-ink-secondary">{service.description}</p>
 
         <div className="mt-6 flex flex-wrap gap-3">
-          <Button asChild variant="whatsapp" size="lg">
+          <Button asChild variant="whatsapp" size="lg" className="w-full sm:w-auto">
             <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
               Discuss This Service on WhatsApp
             </a>

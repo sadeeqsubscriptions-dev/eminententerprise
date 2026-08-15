@@ -70,7 +70,7 @@ export function Header({ brand }: { brand: BrandKey }) {
           </span>
         </Link>
 
-        <NavigationMenu className="hidden max-w-none flex-1 justify-center lg:flex">
+        <NavigationMenu className="hidden max-w-none flex-1 justify-center xl:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>Properties</NavigationMenuTrigger>
@@ -120,18 +120,18 @@ export function Header({ brand }: { brand: BrandKey }) {
           >
             <Scale className="h-5 w-5" aria-hidden="true" />
           </Link>
-          <Button asChild variant="outline" size="icon" className="lg:hidden">
+          <Button asChild variant="outline" size="icon" className="xl:hidden">
             <Link href="/properties" aria-label="Search properties">
               <Search />
             </Link>
           </Button>
-          <Button asChild variant="primary" size="md" className="hidden lg:inline-flex">
+          <Button asChild variant="primary" size="md" className="hidden xl:inline-flex">
             <Link href="/properties">Search Properties</Link>
           </Button>
 
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="lg:hidden" aria-label="Open menu">
+              <Button variant="outline" size="icon" className="xl:hidden" aria-label="Open menu">
                 <Menu />
               </Button>
             </SheetTrigger>
