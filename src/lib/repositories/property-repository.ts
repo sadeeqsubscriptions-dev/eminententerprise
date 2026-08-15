@@ -40,7 +40,7 @@ export function searchProperties(filters: FilterState): { results: Property[]; t
   }
   if (filters.cities && filters.cities.length > 0) {
     const citySet = new Set(filters.cities);
-    results = results.filter((p) => citySet.has(p.location.areaSlug));
+    results = results.filter((p) => citySet.has(p.location.city));
   }
   if (filters.areas && filters.areas.length > 0) {
     const areaSet = new Set(filters.areas);
