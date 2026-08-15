@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPinned, TrendingUp, ShieldCheck, Handshake, ArrowRight, Globe2, Home as HomeIcon } from "lucide-react";
-import { EMINENT, BURAQ, GROUP, CONTACT } from "@/config/site";
+import { EMINENT, BURAQ, GROUP } from "@/config/site";
 import { getFeaturedProperties } from "@/lib/repositories/property-repository";
 import { getFeaturedConstructionProjects } from "@/lib/repositories/construction-repository";
 import { getAllArticles } from "@/lib/repositories/article-repository";

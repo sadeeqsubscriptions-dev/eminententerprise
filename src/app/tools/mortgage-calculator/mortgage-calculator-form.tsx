@@ -98,18 +98,22 @@ export function MortgageCalculatorForm() {
 
         <div className="sm:col-span-2">
           <div className="flex items-center justify-between">
-            <Label htmlFor="down-payment-slider">Down payment</Label>
+            <Label htmlFor="down-payment">Down payment</Label>
             <span className="font-tabular-nums text-body-sm font-semibold text-ink-primary">{clampedDownPayment}%</span>
           </div>
-          <Slider
-            id="down-payment-slider"
+          <Input
+            id="down-payment"
+            type="number"
             min={0}
             max={90}
             step={1}
-            value={[clampedDownPayment]}
-            onValueChange={([v]) => setDownPaymentPercent(v)}
-            className="mt-2"
+            value={downPaymentPercent}
+            onChange={(e) => setDownPaymentPercent(Number(e.target.value) || 0)}
+            className="mt-1.5 max-w-[10rem] font-tabular-nums"
           />
+          <div className="mt-2 h-1.5 w-full bg-border-hairline" aria-hidden="true">
+            <div className="h-full bg-accent-strong transition-[width]" style={{ width: `${(clampedDownPayment / 90) * 100}%` }} />
+          </div>
         </div>
 
         <div className="sm:col-span-2">
